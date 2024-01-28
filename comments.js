@@ -1,27 +1,26 @@
 // create web server
+// 1. create server
+// 2. listen to requests
+// 3. handle requests
+// 4. send response
 
+// 1. create server
+// 2. listen to requests
+// 3. handle requests
+// 4. send response
+
+// 1. create server
 const express = require('express');
-const bodyParser = require('body-parser');
-const fs = require('fs');
+
+// 2. listen to requests
 const app = express();
 
-const COMMENTS_FILE = 'comments.json';
+// 3. handle requests
+app.get('/', function(req, res) {
+    res.send('Hello World');
+});
 
-app.set('port', (process.env.PORT || 3000));
-
-app.use('/', express.static(path.join(__dirname, 'public')));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-	extended: true
-}));
-
-// GET /api/comments
-app.get('/api/comments', function(req, res) {
-	fs.readFile(COMMENTS_FILE, function(err, data) {
-		if (err) {
-			console.error(err);
-			process.exit(1);
-		}
-		res.json(JSON.parse(data));
-	});
+// 4. send response
+app.listen(3000, function() {
+    console.log('Server is running on port 3000');
 });
